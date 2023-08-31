@@ -51,7 +51,7 @@ class TokenController(private val users: List<User>) {
                         ctx.attribute("user", user)
                         handler.handle(ctx)
                     } else {
-                        throw ForbiddenResponse("123")
+                        throw ForbiddenResponse("You are not authorized")
                     }
 
                 } else {
