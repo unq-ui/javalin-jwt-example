@@ -1,7 +1,7 @@
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTCreator
 import com.auth0.jwt.algorithms.Algorithm
-import io.javalin.core.security.RouteRole
+import io.javalin.security.RouteRole
 import io.javalin.http.Context
 import io.javalin.http.ForbiddenResponse
 import io.javalin.http.Handler
@@ -51,7 +51,7 @@ class TokenController(private val users: List<User>) {
                         ctx.attribute("user", user)
                         handler.handle(ctx)
                     } else {
-                        throw ForbiddenResponse("123")
+                        throw ForbiddenResponse("You are not authorized")
                     }
 
                 } else {

@@ -5,7 +5,7 @@ import io.javalin.http.NotFoundResponse
 class UserController(val users: List<User>, val tokenController: TokenController) {
 
     fun login(ctx: Context) {
-        val userLogin = ctx.bodyValidator<UserLoginDTO>()
+        val userLogin = ctx.bodyValidator<UserLoginDTO>(UserLoginDTO::class.java)
             .check({ it.username.isNotBlank() }, "Username cannot be empty")
             .check({ it.password.isNotBlank()}, "Password cannot be empty")
             .getOrThrow { throw BadRequestResponse("??") }

@@ -1,23 +1,21 @@
 import io.javalin.Javalin
 
 import io.javalin.apibuilder.ApiBuilder.*
-import io.javalin.core.security.RouteRole
-import javax.management.relation.Role
-
+import io.javalin.security.RouteRole
 internal enum class Roles : RouteRole {
     ANYONE, USER, ADMIN
 }
 
 class Api {
 
-    val users = listOf(
+    private val users = listOf(
         User("u_1", "juan", "juan", false),
         User("u_2", "a", "a", true),
         User("u_3", "b", "b", true),
     )
 
-    val tokenController = TokenController(users)
-    val userController = UserController(users, tokenController)
+    private val tokenController = TokenController(users)
+    private val userController = UserController(users, tokenController)
 
 
     fun start() {
